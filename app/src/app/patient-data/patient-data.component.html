@@ -1,0 +1,120 @@
+
+<div class="contents">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+          <div class="form-block mx-auto">
+            <div class="text-center mb-3">
+            </div>
+              <!-- <div class="form-group first mb-2">
+                <label for="Name">Name</label>
+                <input required="" autofocus="" [(ngModel)]="searchText"   placeholder="enter name you want to search" type="text" class="form-control" name="Name">
+              </div> -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                </div>
+                <input type="text"  [(ngModel)]="searchText"   placeholder="enter name you want to search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  <!-- </div>
+</div> -->
+
+
+<div class="card">
+    <div class="card-header">
+      <!-- <button (click)="addAddress()" class="btn btn-success btn-sm float-right">Add</button> -->
+      <h4>Patient List</h4>
+    </div>
+
+    <div class="card-body">
+      <table class="table ">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Disease</th>
+            <th>Treatment</th>
+            <th>Settings</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Time1</th>
+            <th>Date</th>
+            <th>session</th>
+            <th>review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let address of data | filter:searchText ; let index = index " >
+            <td>{{index + 1}}</td>
+            <td>{{address['Name']}}</td>
+            <td>{{address['Address']}}</td>
+            <td>{{address['Age']}}</td>
+            <td>{{address['Disease']}}</td>
+            <td>{{address['Treatment']}}</td>
+            <td>{{address['Settings']}}</td>
+            <td>{{address['Day']}}</td>
+            <td>{{address['Time']}}</td>
+            <td>{{address['Time1']}}</td>
+            <td>{{address['date'] }}</td>
+            <td>{{address['session'] }}</td>
+            <td>{{address['review'] }}</td>
+
+            <!-- <td>  
+              <button (click)="onEdit(address)" style="margin-left: 10px;" class="btn btn-warning btn-sm">Edit</button>
+              <button style="margin-left: 10px;"  (click)="onDelete(address)"class="btn btn-danger btn-sm">Delete</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <!-- <pagination-controls class = "pagination" (pageChange)="p = $event"></pagination-controls> -->
+    </div>
+  </div>
+    <br>
+    <br>
+    <br>
+  <!-- <div class="container">
+
+    <div class="row">
+      <div class="col-md-12"><h4>{{ id1 ? 'Edit' : 'Add' }} Address</h4></div>
+    </div>
+    <div class="row" >
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="date">State</label>
+          <select class="form-control" [(ngModel)]="state" id="state" >
+            <option *ngFor="let state of states">{{ state }}</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md 4">
+        <div class="form-group">
+          <label for="lastname">District</label>
+          <input required type="text"  [(ngModel)]="district" id="district" class="form-control" id="lastname" >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="mob">Address</label>
+          <input required type="text" [(ngModel)]="address" id="address"  class="form-control" id="mob">
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row">  
+      <div class="col-md-12">
+        <div class="form-group">
+          <button  type="submit" class="btn btn-info" (click)="onEdit(address)">Submit</button>
+        </div>
+      </div>
+    </div>
+
+  </div> -->

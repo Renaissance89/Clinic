@@ -1,0 +1,26 @@
+<nav  *ngIf="isPresent" style="margin-top: 5px;background-color: #e3f2fd;" class="navbar navbar-expand-lg navbar-light lg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item float-right" *ngIf="isPresent"><a routerLink="/user-list" class="nav-link"><strong>User</strong></a></li>
+      <li class="nav-item" *ngIf="isPresent"><a routerLink="/address" class="nav-link"><strong>Address</strong></a></li>
+      <li class="nav-item" ><a routerLink="/about-us" class="nav-link"><strong>About us</strong></a></li>
+      <li class="nav-item"><a routerLink="/contact-us" class="nav-link"><strong>Contact us</strong></a></li>
+      <!-- <li class="nav-item"><strong>{{userName}}</strong></li> -->
+    </ul>
+    <h6>
+      LoggedIn As:
+      <strong class="text-muted">{{userName}}</strong>
+    </h6>
+    <!-- <li (click)="onLogout()" ><a routerLink='/login' class="nav-link btn btn-warning" style="border-radius: 30px; width: 100px;">Logout</a></li> -->
+      <!-- <button class="btn btn-outline-danger"(click)="onLogout()"  type="submit">Logout</button> -->
+      <a routerLink='/login' (click)="onLogout()"  class="btn btn-outline-danger btn-sm active" role="button" aria-pressed="true">Logout</a>
+  </div>
+</nav>
+
+<main>
+  <div class="site-section">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>  
+</main>

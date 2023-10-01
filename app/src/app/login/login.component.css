@@ -1,0 +1,56 @@
+.mybtn {
+    background-color: #fb771a;
+    color: white;
+  }
+  
+  .mybtn:hover {
+    background-color: #796354;
+    color: white;
+  }
+  
+  p {
+    /* color: #b3b3b3; */
+    color: black;
+    text-align: center;
+    font-weight: 300; }
+  
+  /* a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+
+  a:hover {
+    text-decoration: none !important; } */
+  
+  /* .content {
+    padding: 7rem 0; } */
+  
+  .form-block {
+    background: #fff;
+    padding: 40px;
+    max-width: 400px;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
+  
+  @media (max-width: 767.98px) {
+    .form-block {
+      padding: 25px; } }
+
+  .control {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 14px; }
+  
+  .control .caption {
+    position: relative;
+    top: .2rem;
+    color: #888; }
+  
+  .control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0; }
+  
