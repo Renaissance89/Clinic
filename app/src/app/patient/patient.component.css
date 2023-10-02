@@ -1,4 +1,4 @@
-.mybtn {
+ .mybtn {
     background-color: #fb771a;
     color: white;
   }
@@ -8,12 +8,17 @@
     color: white;
   }
   
-  p {
-    /* color: #b3b3b3; */
+/*  p {
     color: black;
     text-align: center;
-    font-weight: 300; }
-  
+    font-weight: 300;
+   }*/
+  textarea {
+     width: 250px;;
+  }
+  #Age{
+    width: 200px;
+  }
   
   
   .form-block {

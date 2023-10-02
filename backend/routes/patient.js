@@ -44,7 +44,15 @@ router.post('/signup', (request, response) => {
      //         on a.id = u.id  where a.id = ${request.userId} `
      db.query(statement, (error, dbResult) => {
        response.send(utils.createResult(error, dbResult))
+       console.log(dbResult)
      })
+   })
+
+   router.get('/count',(request,response)=>{
+    const statement =`SELECT COUNT(Id) as count FROM patient;`
+    db.query(statement,(error,dbResult)=>{
+      response.send(dbResult)
+    })
    })
 
   module.exports = router

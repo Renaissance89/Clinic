@@ -1,6 +1,12 @@
+<div class="container">
+  <div class="row justify-content-center">
+     <h1>Aaram Healthcare</h1>
+  </div>
+</div>
+<br><br>
 <div class="row">
     <div  class="col-md-3">
-      <a href="../patient-data/">
+      <a [routerLink]="['/patient-data']">
         <div class="info info-orange">
           <div class="header">patient Data</div>
         </div>
@@ -8,9 +14,18 @@
     </div>
   
     <div class="col-md-3">
-      <a href="../patient/">
+      <a [routerLink]="['/patient']">
         <div class="info info-green">
-          <div class="header">patient</div>
+          <div class="header">register patient</div>
         </div>
       </a>
     </div>
+    <div class="col-md-3">
+        <div class="info info-blue">
+          <div class="header">patient count
+          </div>
+          <span>{{count}}</span>
+        </div>
+
+    </div>
+</div>

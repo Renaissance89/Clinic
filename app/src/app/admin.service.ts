@@ -53,6 +53,9 @@ export class AdminService {
     return this.httpClient.get(this.url + "/name"+Name)
 
   }
+  getCount(){
+    return this.httpClient.get(this.url+'/count')
+  }
 
   // canActivate() {
   //   if (sessionStorage['token']) {

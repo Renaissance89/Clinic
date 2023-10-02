@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  count:any;
+  no:number;
 
+  constructor(private router:Router,
+    private adminService:AdminService) { }
   ngOnInit(): void {
+    // this.adminService.getCount()
+    //   .subscribe(response=>{
+    //     if(response['status'] == 'success'){
+    //       this.count=response['data'][0]['count']
+    //     }
+    //   })
+    this.adminService.getCount()
+      .subscribe(response=>{
+        this.count=response[0]['count']
+      })
   }
 
 }

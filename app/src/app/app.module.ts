@@ -15,7 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { HomeComponent } from './home/home.component';
 import { PatientDataComponent } from './patient-data/patient-data.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
  
 
@@ -35,10 +35,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 1800,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule
    // MatRadioModule,
     // MatSelectModule
   ],

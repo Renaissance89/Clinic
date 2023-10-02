@@ -10,7 +10,8 @@ import { AdminService } from '../admin.service';
 export class PatientDataComponent implements OnInit {
   data:any= [];
   Name="";
-  searchText="";
+  searchText:string;
+  p: number = 1;
 
   constructor(private router:Router,
     private adminService:AdminService) { }

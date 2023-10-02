@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PatientComponent implements OnInit {
 
-  Name = ""
+  Name:string ="";
   Address = ""
   Age = ""
   Disease = ""
@@ -101,16 +101,23 @@ export class PatientComponent implements OnInit {
 
  }
   onSignup(){
-    this.adminService
-    .signup(this.Name,this.Address,this.Age,this.Disease,this.Treatment,
-      this.Treatment_Plan,this.day,this.day1,this.time,this.time1,this.date,this.review,this.session)
-      .subscribe(response=>{
-        if(response['status']=="success"){
-          this.toastr.success("patient added")
-        }
-      })
-      console.log(this.Name,this.Address,this.Age,this.Disease,this.Treatment,this.Treatment_Plan,
-        this.day,this.day1,this.time,this.time1,this.date,this.review,this.session)
+    if(this.Name.length == 0){
+      this.toastr.error("name is mandatory","",{progressAnimation:'decreasing'})
+    }else{
+      this.adminService
+      .signup(this.Name,this.Address,this.Age,this.Disease,this.Treatment,
+        this.Treatment_Plan,this.day,this.day1,this.time,this.time1,this.date,this.session,this.review)
+        .subscribe(response=>{
+          if(response['status']=="success"){
+            this.toastr.success("patient added","",{progressBar:true})
+          }
+          // window.location.reload()
+          this.ngOnInit()
+        })
+    }
+
+      // console.log(this.Name,this.Address,this.Age,this.Disease,this.Treatment,this.Treatment_Plan,
+      //   this.day,this.day1,this.time,this.time1,this.date,this.review,this.session)
   }
 
   addTreatment(e:any,item:string){
