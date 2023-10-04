@@ -1,7 +1,12 @@
 .pagination {
   float: right;
 }
-
+#card1{
+  /* position: relative;
+  top: 20px;
+  left: 20px; */
+  margin-left: 20px;
+}
 /* .card-header{
     background-color: grey;
 } */

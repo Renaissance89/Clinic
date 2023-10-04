@@ -9,51 +9,59 @@ import { AdminService } from '../admin.service';
 })
 export class PatientDataComponent implements OnInit {
   data:any= [];
+  filter:any= [];
   Name="";
   searchText:string;
   p: number = 1;
+
+  menu = [
+    {name: 'daily'},
+    {name: 'weekly_2times'},
+    {name: 'weekly'},
+    {name: 'monthly'},
+  ];
 
   constructor(private router:Router,
     private adminService:AdminService) { }
 
   ngOnInit(): void {
-  //   this.adminService.getData()
-  //     .subscribe(response=>{
-  //       if(response['status'] == 'success'){
-  //         this.data = response['data']
-  //         console.log(this.data)
-  //       }
-  //     })
-  //   // this.adminService.getData()
-  //   //   .subscribe(Response=>{
-  //   //     this.data = Response
-  //   //     console.log(this.data)
-  //   //   })
-      this.adminService.getData()
-      .subscribe(response=>{
-        if(response['status'] == 'success'){
-          this.data = response['data']
-        //   this.data.sort(function (a:string, b:string) {
-        //     return new Date(a.date) - new Date(b.date);
-        // });
-     
-        // console.log(JSON.stringify(Arr)); 
-        }
-      })
-    //   geeks_outer() {
-    //     this.data.sort(this.GFG_sortFunction);
-    //     console.log(JSON.stringify(this.data));
-    // }
-     
-    //  GFG_sortFunction(a, b) {
-    //     let dateA = new Date(a.date).getTime();
-    //     let dateB = new Date(b.date).getTime();
-    //     return dateA < dateB ? 1 : -1;
-    // };
-    // //  this.geeks_outer();
+      this.loadData()
+
+   }
+
+   filterEvent(event){
+    const n= event.target.value
+    console.log(n)
+    if(n == 0){
+      this.data=this.filter
+    }else
+    {
+      this.data=this.filter.filter(function(e){
+        // console.log(e.menu.name)
+         return  e.Treatment_Plan == n
+       })
+
+    }
+
+    console.log(this.data)
 
 
    }
+
+    loadTreatment_Plan() {
+  
+   }
+
+   loadData(){
+    this.adminService.getData()
+    .subscribe(response=>{
+      if(response['status'] == 'success'){
+        this.data = response['data']
+        this.filter=this.data
+      }
+    })
+   }
+  
 
 
   findName(){
@@ -70,3 +78,5 @@ export class PatientDataComponent implements OnInit {
   }
 
 }
+
+

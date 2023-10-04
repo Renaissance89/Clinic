@@ -1,34 +1,25 @@
-
-<div class="contents">
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-12">
+<!-- <div class="contents"> -->
+<!-- <div class="container-sm">
+      <div class="row">
+        <div class="col-md-4">
           <div class="form-block mx-auto">
             <div class="text-center mb-3">
             </div>
-              <!-- <div class="form-group first mb-2">
-                <label for="Name">Name</label>
-                <input required="" autofocus="" [(ngModel)]="searchText"   placeholder="enter name you want to search" type="text" class="form-control" name="Name">
-              </div> -->
+              <h3>Search Name</h3>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                 </div>
-                <input type="text"  [(ngModel)]="searchText"   placeholder="enter name you want to search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text"  [(ngModel)]="searchText"   placeholder="enter name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
           </div>
         </div>
       </div>
-    </div>
-    <br>
-  <!-- </div>
-</div> -->
+    </div> -->
 
-
-<div class="container">
+<!-- <div class="container">
   <div class="card" >
     <div class="card-header">
-      <!-- <button (click)="addAddress()" class="btn btn-success btn-sm float-right">Add</button> -->
       <h4>Patient List</h4>
     </div>
 
@@ -44,17 +35,17 @@
               <th>Operations</th>
               <th>Treatment</th>
               <th>Treatment_Plan</th>
-              <th>Settings</th>
+              <th>Date</th>
               <th>Day</th>
+              <th>Day1</th>
               <th>Time</th>
               <th>Time1</th>
-              <th>Date</th>
               <th>session</th>
               <th style="width:30%">review</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 6, currentPage: p }; let index = index " >
+            <tr *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 5, currentPage: p }; let index = index " >
               <td>{{index + 1}}</td>
               <td>{{address['Name']}}</td>
               <td>{{address['Address']}}</td>
@@ -62,18 +53,13 @@
               <td>{{address['Disease']}}</td>
               <td>{{address['Treatment']}}</td>
               <td>{{address['Treatment_Plan']}}</td>
-              <td>{{address['Settings']}}</td>
+              <td>{{address['Date'] }}</td>
               <td>{{address['Day']}}</td>
+              <td>{{address['Day1']}}</td>
               <td>{{address['Time']}}</td>
               <td>{{address['Time1']}}</td>
-              <td>{{address['date'] }}</td>
               <td>{{address['session'] }}</td>
               <td class="review">{{address['review'] }}</td>
-  
-              <!-- <td>  
-                <button (click)="onEdit(address)" style="margin-left: 10px;" class="btn btn-warning btn-sm">Edit</button>
-                <button style="margin-left: 10px;"  (click)="onDelete(address)"class="btn btn-danger btn-sm">Delete</button>
-              </td> -->
             </tr>
           </tbody>
         </table>
@@ -82,4 +68,106 @@
       <pagination-controls class = "pagination" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
+</div>  -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="card col-md-4">
+      <div class="card-body">
+        <h3>Search </h3>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+          </div>
+          <input type="text" [(ngModel)]="searchText" placeholder="enter name" class="form-control" aria-label="Default"
+            aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-4">
+      <div class="card-body">
+        <h3>filter </h3>
+        <select class="form-control" (change)="filterEvent($event)">
+          <option value="0">All</option>
+          <option *ngFor="let item of menu;let i=index;">{{ item.name }}</option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <!-- <div *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 2, currentPage: p }; let index = index ">
+    <div class="card col-md-4">
+      <div class="card-body">
+        <span>Name : {{address['Name']}}</span>
+        <br>
+        <span>Address : {{address['Address']}}</span>
+        <br>
+        <span>Age : {{address['Age']}}</span>
+        <br>
+        <span>Treatment : {{address['Treatment']}}</span>
+        <br>
+        <span>Treatment_Plan : {{address['Treatment_Plan']}}</span>
+        <br>
+        <span>Date :{{address['Date']}}</span>
+        <br>
+        <span>Day : {{address['Day']}}</span>
+        <br>
+        <span>Day1 : {{address['Day1']}}</span>
+        <br>
+        <span>Time : {{address['Time']}}</span>
+        <br>
+        <span>Time1 : {{address['Time1']}}</span>
+        <br>
+        <span>session : {{address['session']}}</span>
+        <br>
+        <span>review : {{address['review']}}</span>
+        <br>
+
+      </div>
+    </div>
+    <br>
+    <pagination-controls class = "pagination" (pageChange)="p = $event"></pagination-controls> 
+  </div> -->
+
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="card col-md-4"
+        *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 6, currentPage: p }; let index = index ">
+        <div class="card-body">
+          <span>Name : {{address['Name']}}</span>
+          <br>
+          <span>Address : {{address['Address']}}</span>
+          <br>
+          <span>Age : {{address['Age']}}</span>
+          <br>
+          <span>Treatment : {{address['Treatment']}}</span>
+          <br>
+          <span>Treatment_Plan : {{address['Treatment_Plan']}}</span>
+          <br>
+          <span>Date :{{address['Date']}}</span>
+          <br>
+          <span>Day : {{address['Day']}}</span>
+          <br>
+          <span>Day1 : {{address['Day1']}}</span>
+          <br>
+          <span>Time : {{address['Time']}}</span>
+          <br>
+          <span>Time1 : {{address['Time1']}}</span>
+          <br>
+          <span>session : {{address['session']}}</span>
+          <br>
+          <span>review : {{address['review']}}</span>
+          <br>
+        </div>
+        <br>
+      </div>
+    </div>
+
+    <br>
+    <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+  <br>
 </div>

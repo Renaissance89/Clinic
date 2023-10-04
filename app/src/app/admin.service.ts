@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
@@ -9,8 +9,13 @@ export class AdminService {
 
   url = 'http://localhost:3000/patient'
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      token: localStorage['token']
+    })
+  }
+
   constructor(
-    private router: Router,
     private httpClient: HttpClient) { }
   
   login(email: string, password: string) {
@@ -22,8 +27,9 @@ export class AdminService {
     return this.httpClient.post(this.url + '/signin', body)
   }
 
-  signup(Name: string, Address: string, Age: string, Disease: string, Treatment: string[],Treatment_Plan: string, day: string,
-     day1: string, time: string,time1: string,date: string,session: string,review: string) {
+  signup(Name: string, Address: string, Age: Number, Disease: string, Treatment: string[],Treatment_Plan: string, day: string,
+     day1: string, time: string,time1: string,date: string,session: string,review: string
+     ,History: string,points: string,Phone: number) {
     const body = {
       Name:Name,
       Address:Address,
@@ -37,13 +43,26 @@ export class AdminService {
       time1:time1,
       date:date,
       session:session,
-      review:review
+      review:review,
+      History:History,
+      points:points,
+      Phone:Phone,
     }
 
-    return this.httpClient.post(this.url + "/signup", body)
+    return this.httpClient.post(this.url + "/signup", body, this.httpOptions)
   }
+
+  signup1(Name: string,Age:Number) {
+   const body = {
+     Name:Name,
+     Age:Age,
+
+   }
+
+   return this.httpClient.post(this.url + "/signup1", body,this.httpOptions)
+ }
   getData() {
-    return this.httpClient.get(this.url + "/patientData")
+    return this.httpClient.get(this.url + "/patientData",this.httpOptions)
   }
   getName(Name: string) {
     // const body ={

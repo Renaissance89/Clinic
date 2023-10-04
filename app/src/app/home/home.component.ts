@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
     //   })
     this.adminService.getCount()
       .subscribe(response=>{
-        this.count=response[0]['count']
+        this.count=response['data']['count']
+        localStorage['token']=response['data']['token']
+        // console.log(response['data']['count'])
       })
   }
 

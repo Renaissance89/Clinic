@@ -1,0 +1,247 @@
+
+<div class="container">
+    <div class="row align-items-center justify-content-center">
+       <h1>Aaram Healthcare</h1>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+            <div class="form-block mx-auto">
+                <div class="float-md-right">
+                    <!-- <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Date</span>
+                        </div>
+                        {{now}}
+                      </div> -->
+                    <label for="exampleFormControlTextarea1">{{now | date:"MMM dd, yyyy 'at' hh:mm a"}}</label>
+                </div>
+                <div class="float-md-left">
+                    <h3>Patient</h3>
+                </div><br><br><br>
+
+                <form>
+                    <div class="form-group first mb-2">
+                        <label for="Name">Name</label>
+                        <input required autofocus="" [(ngModel)]="Name" type="text" class="form-control" name="Name"
+                            id="Name" Name>
+                    </div>
+                    <!-- <div class="form-group first mb-2">
+                        <label for="Address">Address</label>
+                        <input required="" autofocus="" [(ngModel)]="Address" type="text" class="form-control"
+                            name="Address" id="Address" Address>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <textarea class="form-control" id="Address" rows="3" [(ngModel)]="Address" name="Address"></textarea>
+                      </div>
+                    <div class="form-group first mb-2">
+                        <label for="Age">Age</label>
+                        <input required="" autofocus="" [(ngModel)]="Age" type="number" class="form-control" name="Age"
+                            id="Age" Age>
+                    </div>
+                    <div class="form-group first mb-2">
+                        <label for="Disease">Operations</label>
+                        <input required="" autofocus="" [(ngModel)]="Disease" type="text" class="form-control"
+                            name="Disease" id="Disease" Disease>
+                    </div>
+                    <!-- <div class="form-group first mb-2">
+                        <label for="Treatment">Treatment</label>
+                        <input required="" autofocus="" [(ngModel)]="Treatment" type="text" class="form-control"
+                            name="Treatment" id="Treatment" Treatment>
+                    </div> -->
+                    <!-- <div class="form-group">
+                        <label for="Treatment">Treatment</label>
+                        <select class="form-control" [(ngModel)]="Treatment" id="Treatment" name="Treatment">
+                            <option *ngFor="let item of treatmentPlan;let i=index;">{{ item.name }}</option>
+                        </select>
+                    </div> -->
+                    <!-- <div class="form-check">
+                        <label class="form-check-label" for="Treatment">
+                            Treatment
+                        </label>
+                      </div> -->
+
+                        <label for="treatment">Treatment</label><br>
+                      <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index">
+                        <!-- <input class="form-check-input" type="checkbox"value=`{{item.name}}` id="inlineCheckbox1" ngModel [ngModelOptions]="{standalone: true}" value="option1"> -->
+                        <input class="form-check-input" type="checkbox" value="{{item.name}}" id="inlineCheckbox1" (change)="addTreatment($event,item.name)">
+                        <label class="form-check-label" for="inlineCheckbox1">{{item.name}}</label>
+                      </div>
+                      <!-- name="Nancy" ngModel [ngModelOptions]="{name: 'user'} -->
+                      <!-- <label *ngFor="let value of treatmentPlan;">
+                        {{value.name}}
+                        <input type="number" min="0" max="999" step="1" [(ngModel)]="value">
+                    </label> -->
+                      <br><br>
+                    <div class="form-group">
+                        <label for="Treatment_Plan">Treatment_Plan</label>
+                        <select class="form-control" [(ngModel)]="Treatment_Plan" id="Treatment_Plan" name="Treatment_Plan">
+                            <!-- <option *ngFor="let item of menu;let i=index;" >{{ item.name }}</option> -->
+                            <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times' || Treatment_Plan === 'weekly'">
+                        <label for="day">day</label>
+                        <select class="form-control" [(ngModel)]="day" id="day" name="day">
+                            <option *ngFor="let item of days;let i=index;">{{ item.name }}</option>
+                            <!-- <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option> -->
+
+                        </select>
+                    </div>
+                    <div class="form-group"
+                        *ngIf="Treatment_Plan === 'daily' || Treatment_Plan === 'weekly' || Treatment_Plan === 'weekly_2times' || Treatment_Plan === 'monthly'">
+                        <label for="time">time</label>
+                        <select class="form-control" [(ngModel)]="time" id="time" name="time">
+
+                            <option *ngFor="let item of timeSlot;let i=index;">{{ item.name }}</option>
+                            <!-- <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option> -->
+
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times'">
+                        <label for="time1">time1</label>
+                        <select class="form-control" [(ngModel)]="time1" id="time1" name="time1">
+                            <option *ngFor="let item of timeSlot;let i=index;">{{ item.name }}</option>
+                            <!-- <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option> -->
+
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times'">
+                        <label for="day">day1</label>
+                        <select class="form-control" [(ngModel)]="day1" id="day1" name="day1">
+                            <option *ngFor="let item of days;let i=index;">{{ item.name }}</option>
+                            <!-- <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option> -->
+
+                        </select>
+                    </div>
+                    <!-- <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times'">
+                        <label for="day">day</label>
+                        <select class="form-control" [(ngModel)]="day" id="day" name="day">
+                            <option *ngFor="let item of days;let i=index;">{{ item.name }}</option>
+                            <option value="daily">daily</option>
+                            <option value="weekly">weekly</option>
+                            <option value="weekly_2times">Weekly(2 Times)</option>
+                            <option value="monthly">monthly</option> 
+
+                        </select>
+                    </div>-->
+                    <!-- <div class="form-group first mb-2" *ngIf="Treatment_Plan === 'weekly_2times' ">
+                        <label for="day1">day</label>
+                        <input required="" autofocus="" [(ngModel)]="day1" type="text" class="form-control"
+                            name="day1" id="day1" day1>
+                    </div> -->
+                    <div class="form-group first mb-2" *ngIf="Treatment_Plan === 'monthly' ">
+                        <label for="date">date</label>
+                        <input required="" autofocus="" [(ngModel)]="date" type="date" class="form-control" name="date"
+                            id="date" date (change)="onItemChange()">
+                    </div>
+                    <div class="form-group">
+                        <label for="session">session</label>
+                        <select class="form-control" [(ngModel)]="session" id="session" name="session">
+                            <!-- <option *ngFor="let item of menu;let i=index;" >{{ item.name }}</option> -->
+                            <option value="daily">daily</option>
+                            <option value="weekly">2Times_In_15Days</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">review</label>
+                        <textarea class="form-control" id="review" rows="3" cols="10" [(ngModel)]="review" name="review"></textarea>
+                      </div>
+                    <!-- <div class="form-group" *ngIf="Treatment_Plan === 'weekly' ">
+                        <label for="Treatment_Plan">time</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="9:30">
+                            <label class="form-check-label" for="inlineCheckbox1">9:30</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">9:30</label>
+                          </div>
+                    </div> -->
+
+
+
+                    <!-- <div class="form-group first mb-2" *ngIf="index==0 || index==1 || index==2 || index==3">
+                        <label for="time">Time</label>
+                        <div class="form-group first mb-2">
+
+                            <mat-radio-button class="ft-12" *ngFor="let item of timeSlot; let i = index;"
+                                value="{{item.name}}" (ngModel)="time" name="time1" time>
+                                {{ item.name }}
+                            </mat-radio-button>
+                        </div>
+                    </div>
+                    <div class="form-group first mb-2" *ngIf="index==1">
+                        <label for="time1">Time1</label>
+                        <div class="form-group first mb-2">
+
+                            <mat-radio-button class="ft-12" *ngFor="let item of timeSlot; let i = index;"
+                                value="{{item.name}}" [(ngModel)]="time1" id="time1" time1>
+                                {{ item.name }}
+                            </mat-radio-button>
+                        </div>
+                    </div>
+                    <div class="form-group first mb-2" *ngIf="index==1">
+                        <label for="day">Day</label>
+                        <input required="" autofocus="" [(ngModel)]="day" type="text" class="form-control" name="day"
+                            id="day" day>
+                    </div>
+                    <div class="form-group first mb-2" *ngIf="index==1">
+                        <label for="day1">Day1</label>
+                        <input required="" autofocus="" [(ngModel)]="day1" type="text" class="form-control"
+                            formControlName="day1" name="day1" id="day1" day1>
+                    </div> -->
+                    <!-- <div class="form-group first mb-2">
+                        <label for="Name">Name</label>
+                        <input required="" autofocus="" [(ngModel)]="Name" type="text" class="form-control" name="Name" id="Name" Name>
+                    </div> -->
+                    <!-- <div class="form-group first mb-2" *ngIf="index==3">
+                        <label for="date">Date</label>
+                        <input required="" autofocus="" [(ngModel)]="date" type="text" class="form-control" name="date"
+                            id="date" date>
+                    </div> -->
+                    <!-- 
+                    <input type="text" class="form-control" placeholder="0"> -->
+                    <!-- <div class="form-group first mb-2" *ngIf="model.prop === A">
+                        <label for="username">Treatment</label>
+                        <input required="" autofocus="" [(ngModel)]="Treatment" type="text" class="form-control"
+                            name="Treatment" id="Treatment" Treatment>
+                    </div> -->
+                    <!-- <div class="form-group first mb-2">
+              <label for="username">Password</label>
+              <input required="" autofocus="" [(ngModel)]="password" type="password" class="form-control" name="password" password id="password">
+            </div>
+            <div class="form-group first mb-2">
+              <label for="username">Confirm Password</label>
+              <input required="" autofocus="" [(ngModel)]="confirmPassword" type="password" class="form-control" name="confirmPassword"  id="confirmPassword">
+            </div> -->
+                    <!-- <input type="submit" (click)="onSignup()" value="Sign Up" class="mybtn btn btn-block"> -->
+                    <!-- <hr>
+            <p>Already have an account ?</p>
+            <input routerLink="/login" type="submit" value="Sign in" class="mybtn btn btn-block">
+            <br>
+            <br> -->
+                    <input type="submit" (click)="onSignup()" value="Add" class="mybtn btn btn-small">
+                </form>
+            </div>
+        </div>
+    </div>

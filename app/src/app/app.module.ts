@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { PatientDataComponent } from './patient-data/patient-data.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PatientNewComponent } from './patient-new/patient-new.component';
+import { TreatmentChildComponent } from './treatment-child/treatment-child.component';
 
  
 
@@ -26,6 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PatientComponent,
     HomeComponent,
     PatientDataComponent,
+    PatientNewComponent,
+    TreatmentChildComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
       preventDuplicates: true,
     }),
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
    // MatRadioModule,
     // MatSelectModule
   ],

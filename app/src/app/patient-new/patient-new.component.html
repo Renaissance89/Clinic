@@ -1,0 +1,51 @@
+<!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> -->
+<form  (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="Name">Name</label>
+        <input  formControlName="Name"type="text"  class="form-control" id="Name" placeholder="Name">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="Age">Age</label>
+        <input formControlName="Age" type="number"  class="form-control" id="Age" >
+      </div>
+      <div class="form-group col-md-4">
+        <label for="pNumber">Phone number</label>
+        <input formControlName="pNumber" type="number" class="form-control" id="pNumber" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Opertations">Operations</label>
+          <input type="text" class="form-control" id="Opertations" >
+        </div>
+      </div>
+    <!-- <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div> -->
+    <!-- <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary">Submit</button> -->
+         <button type="submit"  class="btn btn-primary">Submit</button>
+ </form>
+  <br>
+  <!-- <pre>{{ profileForm?.value | json }}</pre>
+  <br>
+  <p>Form Status: {{ profileForm.status }}</p> -->

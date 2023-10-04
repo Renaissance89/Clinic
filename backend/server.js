@@ -6,6 +6,7 @@ const config = require('./config')
 
 // routes
 const routerPatient = require('./routes/patient')
+const routerAdmin = require('./routes/admin')
 
 
 const app = express()
@@ -15,46 +16,42 @@ app.use(cors('*'))
 app.use(bodyParser.json())
 
 //request userID
-// function getUserId(request, response, next) {
-//   // const token = request.headers['token']
-//   // const data = jwt.verify(token, config.secret)
-//   // request.userId = data['id']
+function getPatientId(request, response, next) {
   
-//   if (request.url == '/user/signin'
-//       ||request.url == '/user/signup'
-//       ||request.url == '/contactus/create'
-//       ||request.url == '/user/emailValidation') {
+  if (
+       request.url == '/patient/count'
+      ) {
 
-//     // do not check for token 
-//     next()
+    // do not check for token 
+   next()
     
-//   } else {
+  } else {
 
     
-//     try {
-//       const token = request.headers['token']
-//       const data = jwt.verify(token, config.secret)
+    try {
+      const token = request.headers['token']
+      const data = jwt.verify(token, config.secret)
 
-//       // userId with logged in user's id
-//       request.userId = data['id']
-//       // console.log(data['id'])
+      // userId with logged in user's id
+     // request.patientId = data['id']
+    //  console.log(data['id'])
 
-//       // call routes
-//       next()
+     // call routes
+      next()
       
-//     } catch (ex) {
-//       response.status(401)
-//       response.send({status: 'error', error: 'protected api'})
-//     }
-//   }
-// }
+    } catch (ex) {
+      response.status(401)
+      response.send({status: 'error', error: 'protected api'})
+    }
+  }
+}
 
 //console.log(data['id'])
-// app.use(getUserId)
+app.use(getPatientId)
 
 // add routes to the application
 app.use('/patient', routerPatient)
-// app.use('/address',routerAddress)
+ app.use('/admin',routerAdmin)
 // app.use('/contactus',routerContactus)
 
 
