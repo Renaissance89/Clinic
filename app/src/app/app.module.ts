@@ -18,7 +18,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PatientNewComponent } from './patient-new/patient-new.component';
 import { TreatmentChildComponent } from './treatment-child/treatment-child.component';
+import { ReviewComponent } from './review/review.component';
+//videoPlayer
 
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+//import {SingleMediaPlayer} from './single-media-player';
  
 
 @NgModule({
@@ -30,6 +37,8 @@ import { TreatmentChildComponent } from './treatment-child/treatment-child.compo
     PatientDataComponent,
     PatientNewComponent,
     TreatmentChildComponent,
+    ReviewComponent,
+   // SingleMediaPlayer
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,12 @@ import { TreatmentChildComponent } from './treatment-child/treatment-child.compo
     }),
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    //video
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
    // MatRadioModule,
     // MatSelectModule
   ],

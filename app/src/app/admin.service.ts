@@ -9,6 +9,8 @@ export class AdminService {
 
   url = 'http://localhost:3000/patient'
 
+  url1 = 'http://localhost:3000/review'
+
   httpOptions = {
     headers: new HttpHeaders({
       token: localStorage['token']
@@ -45,7 +47,7 @@ export class AdminService {
       session:session,
       review:review,
       History:History,
-      points:points,
+      Points:points,
       Phone:Phone,
     }
 
@@ -61,6 +63,11 @@ export class AdminService {
 
    return this.httpClient.post(this.url + "/signup1", body,this.httpOptions)
  }
+
+ getReview(id){
+  return this.httpClient.get(this.url1+"/before/"+id,this.httpOptions)
+ }
+
   getData() {
     return this.httpClient.get(this.url + "/patientData",this.httpOptions)
   }
@@ -69,12 +76,57 @@ export class AdminService {
     //   Name:Name
     // }
     console.log(this.url + "/name")
-    return this.httpClient.get(this.url + "/name"+Name)
+    return this.httpClient.get(this.url + "/name"+Name,this.httpOptions)
 
   }
+
+  getId(id: number) {
+
+    console.log(this.url + "/"+id)
+    return this.httpClient.get(this.url1+"/"+id,this.httpOptions)
+
+  }
+  
   getCount(){
     return this.httpClient.get(this.url+'/count')
   }
+
+  uploadBeforeVideo(id,file){
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     token: sessionStorage['token']
+    //   })
+    // };
+
+    // const body = new FormData()
+    // body.append('rBefore', file)
+
+    return this.httpClient.post(this.url1 + `/rBefore/${id}`, file, this.httpOptions)
+
+  }
+
+  uploadAfterVideo(id,file){
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     token: sessionStorage['token']
+    //   })
+    // };
+
+    // const body = new FormData()
+    // body.append('after', file)
+
+    return this.httpClient.post(this.url1 + `/after/${id}`, file, this.httpOptions)
+
+  }
+
+  // getReview(){
+  //   const httpOptions={
+  //     headers:new HttpHeaders({
+  //       token:sessionStorage['token']
+  //     })
+  //   }
+  //   return this.httpClient.get()
+  // }
 
   // canActivate() {
   //   if (sessionStorage['token']) {

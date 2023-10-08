@@ -1,0 +1,91 @@
+<!-- <vg-player class="player">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar [vgSlider]="true" >
+        <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time ></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls>
+        <vg-play-pause></vg-play-pause>
+        <vg-playback-button></vg-playback-button>
+
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-track-selector></vg-track-selector>
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+
+    <video  [vgMedia]="$any(media)" #media id="singleVideo"  [src]="src" preload="auto" crossorigin>
+    </video>
+</vg-player> -->
+
+<div class="container-fluid" *ngIf="name !=='' ">
+    <div class="col-md-12" *ngFor="let item of review">
+        <div class="row">
+            <!-- <div class="card col-md-4"
+                *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 6, currentPage: p }; let index = index "> -->
+            <div class="card-body">
+                <div *ngFor="let address of review">
+                    <h3>Name : {{address['Name']}}</h3>
+                    <h3>Address : {{address['Address']}}</h3>
+                    <h1>{{h2}}</h1>
+                </div>
+                <div class="row">
+                    <vg-player class="player">
+                        <vg-overlay-play></vg-overlay-play>
+                        <vg-buffering></vg-buffering>
+
+                        <vg-scrub-bar [vgSlider]="true">
+                            <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
+
+                        <vg-controls>
+                            <vg-play-pause></vg-play-pause>
+                            <vg-playback-button></vg-playback-button>
+
+                            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                            <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+                            <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+                            <vg-track-selector></vg-track-selector>
+                            <vg-mute></vg-mute>
+                            <vg-volume></vg-volume>
+
+                            <vg-fullscreen></vg-fullscreen>
+                        </vg-controls>
+
+                        <video [vgMedia]="$any(media)" #media id="singleVideo" [src]="src" preload="auto" crossorigin>
+                        </video>
+                    </vg-player>
+                </div>
+                <br>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+</div>
+<div>
+    <div *ngIf="pid >=1 ">
+        <h2>{{h2}}</h2>
+        <input (change)="onSelect($event)" type="file" class="form-control">
+        <br>
+        <button *ngIf="setName == 1 " (click)="onUploadAfter()" class="btn btn-success"> Upload</button>
+        <button *ngIf="setName == 0 " (click)="onUploadBefore()" class="btn btn-success">Upload</button>
+      </div>
+</div>

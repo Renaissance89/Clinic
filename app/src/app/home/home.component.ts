@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     //   })
     this.adminService.getCount()
       .subscribe(response=>{
+        console.log(response['data'])
         this.count=response['data']['count']
         localStorage['token']=response['data']['token']
         // console.log(response['data']['count'])

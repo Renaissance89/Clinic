@@ -49,6 +49,8 @@ router.post('/signup', (request, response) => {
      })
    })
 
+
+
    router.get('/name', ( request,response) => {
     // const userId = request.body.userId
     const Name=request.body.Name
@@ -64,14 +66,14 @@ router.post('/signup', (request, response) => {
      })
    })
 
+
    router.get('/count',(request,response)=>{
-    const statement =`SELECT COUNT(patientId) as count, patientId FROM patient;`
+    const statement =`SELECT COUNT(patientId) as count FROM patient;`
     db.query(statement,(error,patient)=>{
-      const p =patient
+      const p =patient[0]
       const token=jwt.sign({patientId:p['patientId']},config.secret)
       response.send(utils.createResult(error, {
         count:p['count'],
-        patientId:p['patientId'],
         token: token
       }))
     })

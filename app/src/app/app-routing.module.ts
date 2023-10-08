@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { PatientDataComponent } from './patient-data/patient-data.component';
 import { PatientNewComponent } from './patient-new/patient-new.component';
 import { TreatmentChildComponent } from './treatment-child/treatment-child.component';
+import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
   // { path: '**', redirectTo: '/home', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     children: [{ path: 'tChild', component: TreatmentChildComponent }]
   },
   { path: 'patient-data', component: PatientDataComponent },
-  { path: 'patientNew', component: PatientNewComponent }
+  { path: 'patientNew', component: PatientNewComponent },
+  { path: 'review', component: ReviewComponent }
   // { path: '', redirectTo: '/Home', pathMatch: 'full' ,component: HomeComponent},
   // { path: 'home', component: HomeComponent,
   //   children: [

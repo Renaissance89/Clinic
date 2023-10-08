@@ -63,7 +63,7 @@ export class PatientComponent implements OnInit {
   date="";
   session="";
   review="";
-  Points:string="";
+  Points="";
 
 
   itemName:boolean=false;
@@ -180,6 +180,7 @@ export class PatientComponent implements OnInit {
         setTimeout(() => {
            window.location.reload()
         }, 3000);
+        this.router.navigate(['/patient-data'])
     }
 
 

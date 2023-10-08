@@ -90,7 +90,7 @@
         <select class="form-control" (change)="filterEvent($event)">
           <option value="0">All</option>
           <option *ngFor="let item of menu;let i=index;">{{ item.name }}</option>
-      </select>
+        </select>
       </div>
     </div>
   </div>
@@ -146,6 +146,8 @@
           <br>
           <span>Treatment_Plan : {{address['Treatment_Plan']}}</span>
           <br>
+          <span>Points : {{address['Points']}}</span>
+          <br>
           <span>Date :{{address['Date']}}</span>
           <br>
           <span>Day : {{address['Day']}}</span>
@@ -160,6 +162,28 @@
           <br>
           <span>review : {{address['review']}}</span>
           <br>
+
+              <div *ngIf="address['rBefore']  == '' ">
+                <label >Before Treatment : </label>
+                <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
+                <button (click)="onUploadBefore(address['patientId'],$event)" class="btn btn-success">Upload</button>
+              </div>
+              <br>
+              <div *ngIf="address['after']  == '' ">
+                <label >After Treatment : </label>
+                <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
+                <button (click)="onUploadAfter(address['patientId'])" class="btn btn-success">Upload</button>
+              </div>
+
+              <div *ngIf="address['rBefore']  !== '' ">
+                <span >Before Treatment: <button (click)="onClick(address['rBefore'])"
+                  type="button" class="btn btn-link">Link</button></span>
+              </div>
+              <div *ngIf="address['after']  !== '' ">
+                <span >After Treatment : <button (click)="onClick(address['after'])" type="button"
+                  class="btn btn-link">Link</button></span>
+              </div>
+
         </div>
         <br>
       </div>
