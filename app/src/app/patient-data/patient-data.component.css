@@ -7,6 +7,17 @@
   left: 20px; */
   margin-left: 20px;
 }
+.card{
+  padding: 10px;
+}
+
+img{
+  width: 340px;
+    height: 340px;
+}
+.card-img-top:hover{
+  transform: scale(1.5);
+}
 /* .card-header{
     background-color: grey;
 } */

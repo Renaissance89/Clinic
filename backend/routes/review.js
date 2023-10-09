@@ -50,4 +50,16 @@ router.get('/:id', ( request,response) => {
        response.send(utils.createResult(error, dbResult))
      })
    })
+
+   router.post('/delete-review/:id/:name', (request, response) => {
+    const { id,name} = request.params
+    const statement = `update patient set ${name} = "" where patientId = ${id}`
+    db.query(statement, (error, data) => {
+      if(error) {
+        response.send(utils.createResult(error,data))
+      } else {
+        response.send(utils.createResult(error,data))
+      }
+    })
+  })
 module.exports = router

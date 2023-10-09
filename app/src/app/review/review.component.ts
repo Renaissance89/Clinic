@@ -53,6 +53,9 @@ export class ReviewComponent implements OnInit {
         this.setName = 0
        // this.onUploadBefore();
     }
+    if(n=="image"){
+      this.setName = 2
+    }
       
   }
 
@@ -100,6 +103,19 @@ export class ReviewComponent implements OnInit {
     .subscribe(response=>{
       if(response['status'] == 'success'){
         this.toastr.success("video uploaded")
+        this.router.navigate(["/patient-data"])
+      }
+    })
+   }
+   onUploadImage(){
+    console.log(this.selectedFile)
+    let fd = new FormData()
+    fd.append('image',this.selectedFile)
+    this.adminservice
+    .uploadImage(this.pid,fd)
+    .subscribe(response=>{
+      if(response['status'] == 'success'){
+        this.toastr.success("image uploaded")
         this.router.navigate(["/patient-data"])
       }
     })

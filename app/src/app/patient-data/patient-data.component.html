@@ -135,6 +135,12 @@
     <div class="row">
       <div class="card col-md-4"
         *ngFor="let address of data | filter:searchText |paginate: { itemsPerPage: 6, currentPage: p }; let index = index ">
+        <div class="card-img-top" >
+          <img *ngIf="address['image'] != '' " src="http://localhost:3000/patient/image/{{address['image']}}"  alt="Card image cap">
+        </div>
+
+
+        <hr>
         <div class="card-body">
           <span>Name : {{address['Name']}}</span>
           <br>
@@ -162,30 +168,48 @@
           <br>
           <span>review : {{address['review']}}</span>
           <br>
+          <span>history : {{address['History']}}</span>
+          <br>
 
-              <div *ngIf="address['rBefore']  == '' ">
-                <label >Before Treatment : </label>
-                <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
-                <button (click)="onUploadBefore(address['patientId'],$event)" class="btn btn-success">Upload</button>
-              </div>
-              <br>
-              <div *ngIf="address['after']  == '' ">
-                <label >After Treatment : </label>
-                <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
-                <button (click)="onUploadAfter(address['patientId'])" class="btn btn-success">Upload</button>
-              </div>
+          <div *ngIf="address['rBefore']  == '' ">
+            <label>Before Treatment : </label>
+            <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
+            &nbsp;<button (click)="onUploadBefore(address['patientId'],$event)"
+              class="btn btn-outline-success">Upload</button>
+          </div>
+          <br>
+          <div *ngIf="address['after']  == '' ">
+            <label>After Treatment : </label>
+            <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
+            &nbsp;<button (click)="onUploadAfter(address['patientId'])" class="btn btn-outline-success">Upload</button>
+          </div>
+          <br>
+          <div *ngIf="address['image']  == '' ">
+            <label>Patient Image  : </label>
+            <!-- <input (change)="onSelect($event)" type="file" class="form-control"> -->
+            &nbsp;<button (click)="uploadImage(address['patientId'])" class="btn btn-outline-success">Upload</button>
+          </div>
 
-              <div *ngIf="address['rBefore']  !== '' ">
-                <span >Before Treatment: <button (click)="onClick(address['rBefore'])"
-                  type="button" class="btn btn-link">Link</button></span>
-              </div>
-              <div *ngIf="address['after']  !== '' ">
-                <span >After Treatment : <button (click)="onClick(address['after'])" type="button"
-                  class="btn btn-link">Link</button></span>
-              </div>
-
+          <div *ngIf="address['rBefore']  !== '' ">
+            <span>Before Treatment: <button (click)="onClick(address['rBefore'])" type="button"
+                class="btn btn-link">Link</button>
+              <button (click)="deleteReviewBefore(address['patientId'])" class="btn btn-outline-danger">Delete</button>
+            </span>
+          </div>
+          <br>
+          <div *ngIf="address['after']  !== '' ">
+            <span>After Treatment : <button (click)="onClick(address['after'])" type="button"
+                class="btn btn-link">Link</button>
+              <button (click)="deleteReviewAfter(address['patientId'])" class="btn btn-outline-danger">Delete</button>
+            </span>
+          </div>
         </div>
         <br>
+        <!-- <div class="col-md-4"> -->
+        <button (click)="updatePatient(address['patientId'])" class="btn btn-outline-warning">Edit</button>
+        <br>
+        <button (click)="deletePatient(address['patientId'])" class="btn btn-outline-danger">Delete</button>
+        <!-- </div> -->
       </div>
     </div>
 

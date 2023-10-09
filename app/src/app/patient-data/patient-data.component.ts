@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from '../admin.service';
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-patient-data',
@@ -16,6 +16,9 @@ export class PatientDataComponent implements OnInit {
   p: number = 1;
   selectedFile = null;
   bName=""
+  src="http://localhost:3000/patient/image/"
+  name=""
+  id:any
 
   menu = [
     {name: 'daily'},
@@ -26,7 +29,7 @@ export class PatientDataComponent implements OnInit {
 
   constructor(private router:Router,
     private activatedRoute: ActivatedRoute,
-    private adminService:AdminService,
+    private adminservice:AdminService,
     private activatedroute: ActivatedRoute,
     private toastr: ToastrService
     ) { }
@@ -41,7 +44,7 @@ export class PatientDataComponent implements OnInit {
 
    onUploadBefore(id,event){
     // const id = this.activatedRoute.snapshot.queryParams['patientId']
-    // this.adminService
+    // this.adminservice
     // .uploadBeforeVideo(id,this.selectedFile)
     // .subscribe(response=>{
     //   if(response['status'] == 'success'){
@@ -56,7 +59,7 @@ export class PatientDataComponent implements OnInit {
 
    onUploadAfter(id){
     // const id = this.activatedRoute.snapshot.queryParams['patientId']
-    // this.adminService
+    // this.adminservice
     // .uploadAfterVideo(id,this.selectedFile)
     // .subscribe(response=>{
     //   if(response['status'] == 'success'){
@@ -65,6 +68,10 @@ export class PatientDataComponent implements OnInit {
     //   }
     // })
     const tag="After Treatment Video"
+    this.router.navigate(['/review'],{queryParams: {id:id,tag:tag} }  )
+   }
+   uploadImage(id){
+    const tag="image"
     this.router.navigate(['/review'],{queryParams: {id:id,tag:tag} }  )
    }
 
@@ -100,11 +107,19 @@ export class PatientDataComponent implements OnInit {
   }
 
    loadData(){
-    this.adminService.getData()
+    this.adminservice.getData()
     .subscribe(response=>{
       if(response['status'] == 'success'){
         this.data = response['data']
         this.filter=this.data
+        // if(this.name != this.data[0]['image'] ){
+        //   this.id=this.data[0]['image']
+        //   this.src="http://localhost:3000/patient/image/"+this.id;
+        // }
+        // this.filter.forEach(element => {
+        //   if(element.image != "")
+        //   this.src=element.image          
+        // });
        // console.log(this.data[0])
       }
     })
@@ -115,7 +130,7 @@ export class PatientDataComponent implements OnInit {
   findName(){
     console.log(this.Name)
    // const id = this.activatedroute.snapshot.queryParams['id']
-    this.adminService.getName(this.Name)
+    this.adminservice.getName(this.Name)
     .subscribe(response=>{
       if(response['status'] == 'success'){
         this.data = response['data']
@@ -123,6 +138,42 @@ export class PatientDataComponent implements OnInit {
 
       }
     })
+  }
+
+  deleteReviewBefore(id){    
+    this.adminservice
+    .deleteReview(id,'rBefore')
+    .subscribe(response=>{
+      if(response['status'] == 'success'){
+        this.data=response['data']
+        this.loadData()
+      }
+    })
+  }
+  deleteReviewAfter(id){
+    this.adminservice
+    .deleteReview(id,'After')
+    .subscribe(response=>{
+      if(response['status'] == 'success'){
+        this.data=response['data']
+        this.loadData()
+      }
+    })
+  }
+
+  deletePatient(id){
+    this.adminservice
+    .deletePatient(id)
+    .subscribe(response=>{
+      if(response['status'] == 'success'){
+        this.loadData()
+      }
+    })
+
+  }
+
+  updatePatient(id){
+    this.router.navigate(['/patient'],{queryParams: {id:id} })
   }
 
 }

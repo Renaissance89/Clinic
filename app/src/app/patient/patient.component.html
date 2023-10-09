@@ -39,20 +39,29 @@
                     id="Phone-no" Phone-no>
             </div>
             <div class="form-group first mb-2">
-                <label for="Disease">Operations</label>
+                <label for="Disease">Disease</label>
                 <input required="" autofocus="" [(ngModel)]="Disease" type="text" class="form-control" name="Disease"
                     id="Disease" Disease>
             </div>
 
             <label for="treatment">Treatment</label><br>
-            <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index">
+            <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index" >
                 <!-- <input class="form-check-input" type="checkbox"value=`{{item.name}}` id="inlineCheckbox1" ngModel [ngModelOptions]="{standalone: true}" value="option1"> -->
-                <input class="form-check-input" type="checkbox" value="{{item.name}}" id="inlineCheckbox1"
+                <input class="form-check-input" type="checkbox" value="{{item.name}}" [checked]="valu" id="inlineCheckbox1"
                     (change)="addTreatment($event,item.name)">
                 <label class="form-check-label" for="inlineCheckbox1">{{item.name}}</label>
             </div>
 
             <br><br>
+            <div class="form-group" *ngIf="itemName">
+                <label>Points Image</label>
+                <div class="col-md-8">
+                    <button class="btn btn-lg btn-outline-primary" 
+                    (click)="open(content)"> 
+                    open image
+                </button> 
+                </div>
+            </div>
             <div class="form-group" *ngIf="itemName">
                 <label for="Points">Points</label>
                 <div class="col-md-8">
@@ -75,7 +84,7 @@
             <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times' || Treatment_Plan === 'weekly'">
                 <label for="day">day</label>
                 <select class="form-control" [(ngModel)]="day" id="day" name="day">
-                    <option *ngFor="let item of days;let i=index;">{{ item.name }}</option>
+                    <option *ngFor="let item of days;let i=index;" [selected]="day === ngDropdown" >{{ item.name }}</option>
 
 
                 </select>
@@ -85,19 +94,19 @@
                 <label for="time">time</label>
                 <select class="form-control" [(ngModel)]="time" id="time" name="time">
 
-                    <option *ngFor="let item of timeSlot;let i=index;">{{ item.name }}</option>
+                    <option *ngFor="let item of timeSlot;let i=index;" [selected]="time === ngDropdown" >{{ item.name }}</option>
 
                 </select>
             </div>
             <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times'">
                 <label for="time1">time1</label>
                 <select class="form-control" [(ngModel)]="time1" id="time1" name="time1">
-                    <option *ngFor="let item of timeSlot;let i=index;">{{ item.name }}</option>
+                    <option *ngFor="let item of timeSlot;let i=index;" [selected]="time1 === ngDropdown" >{{ item.name }}</option>
 
                 </select>
             </div>
             <div class="form-group" *ngIf=" Treatment_Plan === 'weekly_2times'">
-                <label for="day">day1</label>
+                <label for="day1">day1</label>
                 <select class="form-control" [(ngModel)]="day1" id="day1" name="day1">
                     <option *ngFor="let item of days;let i=index;">{{ item.name }}</option>
 
@@ -139,8 +148,80 @@
                 <label for="history">History</label>
                 <textarea class="form-control" id="history" rows="3" [(ngModel)]="History" name="History"></textarea>
             </div>
-            <input type="submit" (click)="onSignup()" value="Add" class="mybtn btn btn-small">
+            <!-- <div class="form-group">
+                <input (change)="onSelect($event)" type="file" class="form-control">
+                <br>
+                <button  (click)="onUpload()" class="btn btn-success"> Upload</button>
+            </div> -->
+            <!-- <input type="submit"  (click)="onSignup()" [value]={{vName}} class="mybtn btn btn-small"> -->
+            <button  (click)="onSignup()" class="btn btn-success">{{ pid ? 'Edit' : 'Add' }} Patient</button>
         </form>
 
     </div>
 </div>
+
+
+<ng-template  #content let-modal> 
+    <div class="modal-header"> 
+        <h4 class="modal-title" 
+            id="modal-basic-title"> 
+            Image
+        </h4> 
+        <button type="button" class="close"
+                aria-label="Close" (click)= 
+                "modal.dismiss('Cross click')"> 
+  
+            <span aria-hidden="true"> 
+                × 
+            </span> 
+        </button> 
+    </div> 
+    <div class="modal-body"> 
+        <br><br>
+        <img class="zoom" target="_blank" src="../../assets/images/h2_page-0001.jpg" alt="">
+        <img class="zoom" src="../../assets/images/h_pages-to-jpg-0001.jpg" alt="">
+        <!-- <div class="image-wrapper">
+            <img 
+             (touchstart)="openZoom($event, true)" 
+             (touchend)="openZoom($event, false)"
+             (touchmove)="positionZoom($event)"
+             src="../../assets/images/h2_page-0001.jpg"
+            />
+           </div>
+           <image-zoom 
+            *ngIf="showZoom" 
+            [src]="srcImageZoom" 
+            [xPos]="xPos" 
+            [yPos]="yPos">
+           </image-zoom> -->
+        <!-- <form> 
+            <div class="form-group"> 
+                <label for="dateOfBirth"> 
+                    Date of birth 
+                </label> 
+                <div class="input-group"> 
+                    <input id="dateOfBirth" 
+                        class="form-control" 
+                        placeholder="yyyy-mm-dd" 
+                        name="dp" ngbDatepicker 
+                        #dp="ngbDatepicker"> 
+  
+                    <div class="input-group-append"> 
+                        <button class="btn  
+                            btn-outline-secondary calendar" 
+                            (click)="dp.toggle()" 
+                            type="button"> 
+                        </button> 
+                    </div> 
+                </div> 
+            </div> 
+        </form>  -->
+    </div> 
+    <!-- <div class="modal-footer"> 
+        <button type="button" 
+            class="btn btn-outline-dark" 
+            (click)="modal.close('Save click')"> 
+            Save 
+        </button> 
+    </div>  -->
+</ng-template> 
