@@ -38,16 +38,26 @@
                 <input required="" autofocus="" [(ngModel)]="Phone" type="number" class="form-control" name="Phone-no"
                     id="Phone-no" Phone-no>
             </div>
-            <div class="form-group first mb-2">
+            <!-- <div class="form-group first mb-2">
                 <label for="Disease">Disease</label>
                 <input required="" autofocus="" [(ngModel)]="Disease" type="text" class="form-control" name="Disease"
                     id="Disease" Disease>
+            </div> -->
+
+            <div class="form-group">
+                <label for="Disease">Disease</label>
+                <select class="form-control" id="Disease" name="Disease" (change)="addDisease($event.target.value)">
+                    <option *ngFor="let item of Disease1;let i=index;">{{ item[i] }}</option>
+                </select>
+                <br>
+                <input *ngIf="other " required autofocus="" (change)="addDisease($event.target.value)" type="text"  class="form-control" name="Disease" id="Disease" >
+                <span *ngIf="pid>0" >Old Disease: {{oldD}}</span>
             </div>
 
             <label for="treatment">Treatment</label><br>
             <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index" >
                 <!-- <input class="form-check-input" type="checkbox"value=`{{item.name}}` id="inlineCheckbox1" ngModel [ngModelOptions]="{standalone: true}" value="option1"> -->
-                <input class="form-check-input" type="checkbox" value="{{item.name}}" [checked]="valu" id="inlineCheckbox1"
+                <input class="form-check-input" type="checkbox" value="{{item.name}}" [(checked)]="valu" id="inlineCheckbox1"
                     (change)="addTreatment($event,item.name)">
                 <label class="form-check-label" for="inlineCheckbox1">{{item.name}}</label>
             </div>
@@ -123,9 +133,19 @@
                 <select class="form-control" [(ngModel)]="session" id="session" name="session">
                     <!-- <option *ngFor="let item of menu;let i=index;" >{{ item.name }}</option> -->
                     <option value="daily">daily</option>
-                    <option value="weekly">2Times_In_15Days</option>
+                    <option value="2Times_In_15Days">2Times_In_15Days</option>
 
                 </select>
+            </div>
+            <div class="form-group first mb-2" >
+                <label for="sdate">Treatment Start Date</label>
+                <input required="" autofocus="" [(ngModel)]="startDate" type="date" class="form-control" name="sdate"
+                    id="sdate"  >
+            </div>
+            <div class="form-group first mb-2" >
+                <label for="edate">Treatment End Date</label>
+                <input required="" autofocus="" [(ngModel)]="endDate"  [value]="endDate" type="date" class="form-control" name="edate"
+                    id="edate"  >
             </div>
             <div class="form-group">
                 <label for="review">Review</label>

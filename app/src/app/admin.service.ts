@@ -29,9 +29,9 @@ export class AdminService {
     return this.httpClient.post(this.url + '/signin', body)
   }
 
-  signup(Name: string, Address: string, Age: Number, Disease: string, Treatment: string[],Treatment_Plan: string, day: string,
+  signup(Name: string, Address: string, Age: Number, Disease: object[], Treatment: string[],Treatment_Plan: string, day: string,
      day1: string, time: string,time1: string,date: string,session: string,review: string
-     ,History: string,points: string,Phone: number) {
+     ,History: string,points: string,Phone: number,startDate:Date,endDate:Date) {
     const body = {
       Name:Name,
       Address:Address,
@@ -49,6 +49,8 @@ export class AdminService {
       History:History,
       Points:points,
       Phone:Phone,
+      startDate:startDate,
+      endDate:endDate,
     }
 
     return this.httpClient.post(this.url + "/signup", body, this.httpOptions)
@@ -70,6 +72,9 @@ export class AdminService {
 
   getData() {
     return this.httpClient.get(this.url + "/patientData",this.httpOptions)
+  }
+  getDateFilter(startDate,endDate) {
+    return this.httpClient.get(this.url + "/patientData/"+startDate+"/"+endDate,this.httpOptions)
   }
   getName(Name: string) {
     // const body ={
@@ -167,9 +172,9 @@ export class AdminService {
     return this.httpClient.delete(this.url + `/delete/${id}`, this.httpOptions)
   }
 
-  updatePatient(id,Name: string, Address: string, Age: Number, Disease: string, Treatment: string[],Treatment_Plan: string, day: string,
+  updatePatient(id,Name: string, Address: string, Age: Number, Disease: object[], Treatment: string[],Treatment_Plan: string, day: string,
     day1: string, time: string,time1: string,date: string,session: string,review: string
-    ,History: string,Points: string,Phone: number){
+    ,History: string,Points: string,Phone: number,startDate:Date,endDate:Date){
       const body = {
         Name:Name,
         Address:Address,
@@ -187,6 +192,8 @@ export class AdminService {
         History:History,
         Points:Points,
         Phone:Phone,
+        startDate:startDate,
+        endDate:endDate,
       }
       return this.httpClient.put(this.url + `/update-patient/${id}`,body, this.httpOptions)
   }

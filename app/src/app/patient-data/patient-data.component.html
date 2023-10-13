@@ -93,6 +93,25 @@
         </select>
       </div>
     </div>
+    <div class="card col-md-4">
+      <div class="card-body">
+        <h3>filter </h3>
+        <div>
+          <label for="sdate">Treatment Start Date</label>
+          <input required="" autofocus=""  type="date" class="form-control" name="sdate"
+              id="sdate"   [(ngModel)]="startDate" >
+        </div>
+        <div>
+          <label for="edate">Treatment End Date</label>
+          <input required="" autofocus="" type="date" class="form-control" name="edate"
+              id="edate" (change)="filterDateFinal($event)"  >
+        </div>
+        <!-- <select class="form-control" (change)="filterDate($event)">
+          <option value="0">All</option>
+          <option *ngFor="let item of menu;let i=index;">{{ item.name }}</option>
+        </select> -->
+      </div>
+    </div>
   </div>
 
   <br>
@@ -148,23 +167,29 @@
           <br>
           <span>Age : {{address['Age']}}</span>
           <br>
+          <span>Disease : {{address['Disease']}}</span>
+          <br>
           <span>Treatment : {{address['Treatment']}}</span>
           <br>
           <span>Treatment_Plan : {{address['Treatment_Plan']}}</span>
           <br>
           <span>Points : {{address['Points']}}</span>
           <br>
-          <span>Date :{{address['Date']}}</span>
-          <br>
-          <span>Day : {{address['Day']}}</span>
-          <br>
-          <span>Day1 : {{address['Day1']}}</span>
-          <br>
-          <span>Time : {{address['Time']}}</span>
-          <br>
-          <span>Time1 : {{address['Time1']}}</span>
-          <br>
+          <span *ngIf="address['Date'] != '' ">Date :{{address['Date']}}</span>
+          <br *ngIf="address['Date'] != '' ">
+          <span *ngIf="address['Day']">Day : {{address['Day']}}</span>
+          <br *ngIf="address['Day'] != '' ">
+          <span *ngIf="address['Day1']">Day1 : {{address['Day1']}}</span>
+          <br *ngIf="address['Day1']">
+          <span *ngIf="address['Time']">Time : {{address['Time']}}</span>
+          <br *ngIf="address['Time']">
+          <span *ngIf="address['Time1']">Time1 : {{address['Time1']}}</span>
+          <br *ngIf="address['Time1']">
           <span>session : {{address['session']}}</span>
+          <br>
+          <span>start Date : {{address['startDate'] | date:shortDate }}</span>
+          <br>
+          <span>end Date : {{address['endDate'] | date:shortDate }}</span>
           <br>
           <span>review : {{address['review']}}</span>
           <br>

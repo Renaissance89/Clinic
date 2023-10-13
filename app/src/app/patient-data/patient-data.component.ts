@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../admin.service';
+//import { forEach } from 'core-js/core/array';
 
 @Component({
   selector: 'app-patient-data',
@@ -19,6 +20,9 @@ export class PatientDataComponent implements OnInit {
   src="http://localhost:3000/patient/image/"
   name=""
   id:any
+  startDate:Date=null
+  endDate:Date=null
+  fData:any=[];
 
   menu = [
     {name: 'daily'},
@@ -77,19 +81,88 @@ export class PatientDataComponent implements OnInit {
 
    filterEvent(event){
     const n= event.target.value
-    console.log(n)
-    if(n == 0){
-      this.data=this.filter
-    }else
-    {
-      this.data=this.filter.filter(function(e){
-        // console.log(e.menu.name)
-         return  e.Treatment_Plan == n
-       })
 
+    // if(this.startDate != null){
+    //   this.fData = this.data
+    // }
+    console.log(n)
+    if(this.startDate == null){
+      if(n == 0){
+        this.data=this.filter
+      }else
+      {
+        this.data=this.filter.filter(function(e){
+          // console.log(e.menu.name)
+           return  e.Treatment_Plan == n
+         })
+  
+      }
+    }
+    else
+    {
+      if(n == 0){
+        this.data=this.filter
+      }else
+      {
+
+        this.data=this.fData.filter(function(e){
+          // console.log(e.menu.name)
+           return  e.Treatment_Plan == n
+         })
+        // this.data=fData
+  
+      }
     }
 
-    console.log(this.data)
+
+   }
+
+   filterDate(event){
+    console.log("event",event.target.value)
+    this.startDate = event.target.value
+      
+   }
+
+   filterDateFinal(event){
+    this.endDate = event.target.value
+    // this.data=this.filter.filter(function(e){
+    //   // console.log(e.menu.name)
+    //    return  e.startDate >= this.startDate && e.endDate <= this.endDate
+    //  })
+    console.log(typeof(this.startDate))
+    if(this.startDate> this.endDate){
+      this.toastr.error("end date must be greater than start date ")
+    }else{
+     // const sDate= new Date(this.startDate)
+      //const eDate= new Date(this.endDate)
+
+      let sDate=this.fData.forEach((e)=>e.startDate)
+      console.log(sDate)
+      const newDate = addWeeks(sDate, 1);
+
+      function addWeeks(date, weeks) {
+        date.setDate(date.getDate() + 7 * weeks);
+        return date;
+      }
+      console.log("newDate",newDate)
+      // if(this.startDate < this.endDate){
+      //   //this.fData=this.data
+      //   this.data=this.fData.filter((donj) => {
+      //     console.log(donj.startDate > this.startDate)
+      //     donj.startDate > this.startDate
+        
+      //   })
+      //     // .map((dnoj)=>{
+      //     //   return dnoj
+      //     // })
+      //   console.log(this.data)
+      // }
+      this.adminservice.getDateFilter(this.startDate,this.endDate)
+      .subscribe(response=>{
+        this.data=response['data']
+        this.fData=this.data
+      })
+    }
 
 
    }
@@ -112,6 +185,30 @@ export class PatientDataComponent implements OnInit {
       if(response['status'] == 'success'){
         this.data = response['data']
         this.filter=this.data
+        this.fData=this.data
+        console.log(this.data)
+        // let valueArray= Object.values(this.data).filter(e=>{
+        //   let value=Object.values(e)
+        //   let d =value.filter(e1=>{
+        //     e1.length>0
+        //   })
+        //   console.log(d)
+        // })
+        // let keyArray= Object.keys(this.data[0])
+        // this.data=valueArray.filter(e=>{
+        //   keyArray.forEach(k=>{
+            
+        //   })
+        // })
+        // console.log(keyArray)
+        // console.log(valueArray)
+//         let fdata = keyArray.filter(e=>{
+//           let d=Object.values(e)
+//           return d.filter(e=>{
+// //let final= e.length>0
+//             console.log(e)
+//           })
+//         })
         // if(this.name != this.data[0]['image'] ){
         //   this.id=this.data[0]['image']
         //   this.src="http://localhost:3000/patient/image/"+this.id;

@@ -30,10 +30,13 @@ router.post('/image/:patientId',upload.single('image'),(request,response)=>{
 
 router.post('/signup', (request, response) => {
   const {Name, Age, Address, Disease, Treatment, Treatment_Plan, day,
-    day1, time, time1, date,session,review,History,Points,Phone}  = request.body
-    const statement = `insert into patient (Name, Age,Address , Disease, Treatment,Treatment_Plan,day,day1,time,time1,date,session,review,History,Points,Phone) values(
+    day1, time, time1, date,session,review,History,Points,Phone,startDate,endDate}  = request.body
+    const statement = `insert into patient (Name, Age,Address , Disease, Treatment,Treatment_Plan,day,day1,time,time1,date,session,
+      review,History,Points,Phone,startDate,endDate) values(
       '${Name}', '${Age}', '${Address}', '${Disease}', '${Treatment}', '${Treatment_Plan}', '${day}', '${day1}', '${time}',
-       '${time1}', '${date}','${session}', '${review}', '${History}', '${Points}', '${Phone}')`
+       '${time1}', '${date}','${session}', '${review}', '${History}', '${Points}', '${Phone}', "${startDate}", "${endDate}")`
+
+
   
     db.query(statement, (error, dbResult) => {
       // const result = utils.createResult(error, dbResult)
@@ -42,6 +45,20 @@ router.post('/signup', (request, response) => {
     })
   
   })
+
+  router.post('/addDate/:id', (request, response) => {
+    const {start,end}  = request.body
+    const id = request.params
+      const statement = `insert into date (id,startDate,endDate) values('${id}',
+        '${start}', '${end}')`
+    
+      db.query(statement, (error, dbResult) => {
+        // const result = utils.createResult(error, dbResult)
+        // response.send(result)
+        response.send(utils.createResult(error, dbResult))
+      })
+    
+    })
 
   router.post('/signup1', (request, response) => {
     const {Name, Age}  = request.body
@@ -57,9 +74,31 @@ router.post('/signup', (request, response) => {
     
     })
 
-  router.get('/patientData', ( request,response) => {
+  // router.get('/patientData', ( request,response) => {
+  //   // const userId = request.body.userId
+  //   const statement = ` select DATE_FORMAT(startDate,'%y/%m/%d') As startDate,DATE_FORMAT(endDate,'%y/%m/%d') As endDate, Name, Age,Address , Disease, Treatment,Treatment_Plan,day,day1,time,time1,date,session,
+  //     review,History,Points,Phone from patient `
+  //    // const statement = ` select   a.addressId, a.state, a.district, a.address, u.firstName from users u INNER JOIN address a
+  //    //         on a.id = u.id  where a.id = ${request.userId} `
+  //    db.query(statement, (error, dbResult) => {
+  //      response.send(utils.createResult(error, dbResult))
+  //    })
+  //  })
+
+   router.get('/patientData', ( request,response) => {
     // const userId = request.body.userId
-    const statement = ` select * from patient `
+    const statement = ` select  * from patient `
+     // const statement = ` select   a.addressId, a.state, a.district, a.address, u.firstName from users u INNER JOIN address a
+     //         on a.id = u.id  where a.id = ${request.userId} `
+     db.query(statement, (error, dbResult) => {
+       response.send(utils.createResult(error, dbResult))
+     })
+   })
+
+   router.get('/patientData/:startDate/:endDate', ( request,response) => {
+    // const userId = request.body.userId
+    const {startDate,endDate} = request.params
+    const statement = ` select * from patient where startDate between "${startDate}" and "${endDate}" `
      // const statement = ` select   a.addressId, a.state, a.district, a.address, u.firstName from users u INNER JOIN address a
      //         on a.id = u.id  where a.id = ${request.userId} `
      db.query(statement, (error, dbResult) => {
@@ -102,18 +141,19 @@ router.post('/signup', (request, response) => {
     const statement =`DELETE FROM patient where patientId=${id};`
     db.query(statement, (error, dbResult) => {
       response.send(utils.createResult(error, dbResult))
-      console.log(dbResult)
+     // console.log(dbResult)
     })
    })
 
    router.put('/update-patient/:id', (request, response) => {
     const { id } = request.params
     const {Name, Age, Address, Disease, Treatment, Treatment_Plan, day,
-      day1, time, time1, date,session,review,History,Points,Phone}  = request.body
+      day1, time, time1, date,session,review,History,Points,Phone,startDate,endDate}  = request.body
 
     const statement = `update patient  set Name= '${Name}', Age='${Age}', Address ='${Address}', Disease='${Disease}',
        Treatment='${Treatment}',Treatment_Plan='${Treatment_Plan}',day='${day}',day1='${day1}',time='${time}',time1= '${time1}',
-          date='${date}',session='${session}',review='${review}',History='${History}',Points='${Points}',Phone='${Phone}'
+          date='${date}',session='${session}',review='${review}',History='${History}',Points='${Points}',Phone='${Phone}',
+          startDate='${startDate}',endDate='${endDate}'
         WHERE patientId=${id}`
     db.query(statement, (error, data) => {
       if(error) {
