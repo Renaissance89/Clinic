@@ -19,6 +19,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PatientNewComponent } from './patient-new/patient-new.component';
 import { TreatmentChildComponent } from './treatment-child/treatment-child.component';
 import { ReviewComponent } from './review/review.component';
+//datepicker
+import { Daterangepicker } from 'ng2-daterangepicker';
 //videoPlayer
 
 import {VgCoreModule} from '@videogular/ngx-videogular/core';
@@ -55,6 +57,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    //datePicker
+    Daterangepicker,
     //video
     VgCoreModule,
     VgControlsModule,

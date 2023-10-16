@@ -51,7 +51,7 @@ export class PatientComponent implements OnInit {
   Age: number;
   Phone: number;
   History: string = "";
- // Disease = ""
+  // Disease = ""
   Treatment_Plan = "";
   isPresent = false;
   rId: any;
@@ -67,18 +67,18 @@ export class PatientComponent implements OnInit {
   review = "";
   Points = "";
   closeResult = ""
-  vName=""
+  vName = ""
   pid = this.activatedRoute.snapshot.queryParams['id']
-  user:any
-  other=false
-  oldD=[]
-  startDate:Date;
-  endDate:Date;
+  user: any
+  other = false
+  oldD = []
+  startDate: Date;
+  endDate: Date;
 
   itemName: boolean = false;
   // Treatment: string[];
-Treatment = new Array<string>();
-Disease = new Array<any>();
+  Treatment = new Array<string>();
+  Disease = new Array<any>();
 
   menu = [
     { name: 'Daily' },
@@ -96,8 +96,8 @@ Disease = new Array<any>();
     { name: 'saturday' },
   ];
 
- // treatmentPlan=[]
- arr=new Array<string>();
+  // treatmentPlan=[]
+  arr = new Array<string>();
 
   treatmentPlan = [
     { name: 'methi' },
@@ -109,12 +109,34 @@ Disease = new Array<any>();
 
   Disease1 = [
     { 0: '' },
-    { 1: 'other' },
-    { 2: 'BackPain' },
-    { 3: 'daviGoti' },
-    { 4: 'ujavigoti' },
-    { 5: 'remove toxins' },
-    { 6: 'BackPain 1 2 3 4 ' },
+    { 1: 'Deep Un consciousness - GV19 BY' },
+    { 2: 'Headache - G41 BW' },
+    { 3: 'Neck pain - TW13 BW, P7FW, LI 10 BW, TW12 BW' },
+    { 4: 'Shoulder pain - B5 FW, TW3BW, LI7BW' },
+    { 5: 'Parkinson - 87FW' },
+    { 6: 'Paralysis of one side of body - LIVGFY  ' },
+    { 7: 'Elbow Pain - LV6FW, TW5 BW ' },
+    { 8: 'Hand & Finger Pain - 517 BW L LI 13 BW, silo B10 LU6FW ' },
+    { 9: 'Back pain (upper & mid) GV10 810, B11 BW, B13 BY GV1BW ' },
+    { 10: 'Lower Back Pain K3FY, B30 BW, GV26FW, B64 BY GVI BW ' },
+    { 11: 'Buttocks Problem/pain 851 (masaj) ' },
+    { 12: 'HIP Joint Pain CV6 FY' },
+    { 13: 'sciatica pain G33BY, G30BW' },
+    { 14: 'knee pain ST45 BW, LIVE 7FW' },
+    { 15: 'Feet (Pain/heaviness/Numbness) - B61 BY' },
+    { 16: 'Pain in calf ST-4S BW, B57BW, G39BW, G32By' },
+    { 17: 'Pain in foot ST-4S BW, 8593W, G37 BW, G42 BW, ST31 BW ST42BAY ' },
+    { 18: 'General Cramps = LIV 3 FW ' },
+    { 19: 'Ankle pain G37 BW' },
+    { 20: 'Heal Pain ST43 BW' },
+    { 21: 'Hot soles B 67 BW ' },
+    { 22: 'Sensation of small insects creeping all over the body ST32 BY ' },
+    { 23: 'Internal Inflamnation (anywhere in body)SP6 FW' },
+    { 24: 'Anal Fissure CV1ZFW, CV6FY, K7FY, G38 BW ' },
+    { 25: 'Anal Fistula = SPS FW ' },
+    // { 26: ' ' },
+    // { 27: ' ' },
+    // { 28: ' ' },
   ]
   // Disease1 = [
   //   { name: '' },
@@ -125,7 +147,7 @@ Disease = new Array<any>();
   //   { name: 'remove toxins' },
   // ]
 
-  valu:boolean=false
+  valu: boolean = false
   //   menu = [
   //  'Daily',
   //  'Weekly(2 Times)',
@@ -162,32 +184,32 @@ Disease = new Array<any>();
   ngOnInit(): void {
 
 
-      // this.adminService.getTreatment()
-      // .subscribe(response=>{
-      //   if(response['status'] == 'success'){
-      //     this.treatmentPlan=response['data']
-      //     console.log(this.Treatment)
-      //   }
-      // })
+    // this.adminService.getTreatment()
+    // .subscribe(response=>{
+    //   if(response['status'] == 'success'){
+    //     this.treatmentPlan=response['data']
+    //     console.log(this.Treatment)
+    //   }
+    // })
 
-    if (this.pid>0) {
-      this.vName="update"
+    if (this.pid > 0) {
+      this.vName = "update"
       this.adminService.getId(this.pid)
         .subscribe(response => {
           if (response['status'] == 'success') {
             const users = response['data']
             if (users) {
               this.user = users[0]
-              this.Treatment=Array.from(
+              this.Treatment = Array.from(
                 this.user['Treatment'].split(",")
-            )
-           
-            // this.treatmentPlan.forEach((i)=>
-            // // this.valu=i.name==this.user['Treatment'].split(",")
-            //   this.Treatment.forEach((j)=>{
-            //     this.valu=i.name == j
-            //   })          
-            // )
+              )
+
+              // this.treatmentPlan.forEach((i)=>
+              // // this.valu=i.name==this.user['Treatment'].split(",")
+              //   this.Treatment.forEach((j)=>{
+              //     this.valu=i.name == j
+              //   })          
+              // )
 
               // console.log(this.Treatment)
               // this.userList = this.user['firstName']
@@ -196,36 +218,36 @@ Disease = new Array<any>();
               // }else{
               //   this.valu=false
               // }
-              this.Name= this.user['Name']
-                this.Address= this.user['Address']
-                this.Age= this.user['Age']
-                this.Disease= this.user['Disease']
-                this.Treatment= this.user['Treatment']
-                this.Treatment_Plan= this.user['Treatment_Plan']
-                this.day= this.user['Day']
-                this.day1= this.user['Day1']
-                this.time= this.user['Time']
-                this.time1= this.user['Time1']
-                this.date= this.user['Date']
-                this.session= this.user['session']
-                this.review= this.user['review']
-                this.History= this.user['History']
-                this.Points= this.user['Points']
-                this.Phone= this.user['Phone']
-                this.startDate=this.user['startDate']
-                this.endDate=this.user['endDate']
+              this.Name = this.user['Name']
+              this.Address = this.user['Address']
+              this.Age = this.user['Age']
+              this.Disease = this.user['Disease']
+              this.Treatment = this.user['Treatment']
+              this.Treatment_Plan = this.user['Treatment_Plan']
+              this.day = this.user['Day']
+              this.day1 = this.user['Day1']
+              this.time = this.user['Time']
+              this.time1 = this.user['Time1']
+              this.date = this.user['Date']
+              this.session = this.user['session']
+              this.review = this.user['review']
+              this.History = this.user['History']
+              this.Points = this.user['Points']
+              this.Phone = this.user['Phone']
+              this.startDate = this.user['startDate']
+              this.endDate = this.user['endDate']
             }
-            this.Treatment=[]
-            this.oldD=this.Disease
+            this.Treatment = []
+            this.oldD = this.Disease
           }
         })
       //   this.Treatment=Array.from(
       //     this.user['Treatment'].split(",")
       // )
-     
-      this.treatmentPlan.forEach((i)=>
-      // this.valu=i.name==this.user['Treatment'].split(",")
-      this.valu=this.Treatment.includes(i.name)
+
+      this.treatmentPlan.forEach((i) =>
+        // this.valu=i.name==this.user['Treatment'].split(",")
+        this.valu = this.Treatment.includes(i.name)
         // this.Treatment.forEach((j)=>{
         //   this.valu=this.treatmentPlan.includes(j)
         // })          
@@ -251,7 +273,7 @@ Disease = new Array<any>();
 
   }
   onSignup() {
-    if(this.pid>0){
+    if (this.pid > 0) {
       // if (this.Name.length == 0) {
       //   this.toastr.error("name is mandatory")
       // } else if (this.Address.length <= 12) {
@@ -297,47 +319,47 @@ Disease = new Array<any>();
         this.toastr.error("time is mandatory")
       } else if (this.Treatment_Plan == "weekly" && this.day.length == 0) {
         this.toastr.error("day is mandatory")
-      }  else if (this.Treatment_Plan == "weekly_2times" &&  this.day1.length == 0) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.day1.length == 0) {
         this.toastr.error("day1 is mandatory")
-      } else if (this.Treatment_Plan == "weekly_2times" && this.time.length == 0 ) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.time.length == 0) {
         this.toastr.error("time is mandatory")
-      }else if (this.Treatment_Plan == "weekly_2times" &&  this.time1.length == 0) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.time1.length == 0) {
         this.toastr.error(" time1 is mandatory")
       } else if (this.Treatment_Plan == "monthly" && this.date.length == 0) {
         this.toastr.error("date is mandatory")
       } else if (this.Treatment["name"] == "methi" && this.Points.length == 0) {
         this.toastr.error("points are mandatory")
-      } else if (this.startDate== null) {
+      } else if (this.startDate == null) {
         this.toastr.error("start Date is mandatory")
       } else if (this.endDate == null) {
         this.toastr.error("end Date is mandatory")
-      }else if (this.History.length == 0) {
+      } else if (this.History.length == 0) {
         this.toastr.error("History is mandatory")
-      } 
+      }
       else {
-        if(this.Treatment_Plan == "daily"){
-          this.day="";
-          this.time1="";
-          this.day1="";
-          this.date="";
+        if (this.Treatment_Plan == "daily") {
+          this.day = "";
+          this.time1 = "";
+          this.day1 = "";
+          this.date = "";
         }
-         if(this.Treatment_Plan == "monthly"){
-         // this.day="";
-          this.time1="";
-          this.day1="";
+        if (this.Treatment_Plan == "monthly") {
+          // this.day="";
+          this.time1 = "";
+          this.day1 = "";
         }
-        if(this.Treatment.includes("talya") || this.Treatment.includes("tup") || this.Treatment.includes('remove toxins')   ){
-          if( (this.Treatment.includes("methi") || this.Treatment.includes("magnet") )){
+        if (this.Treatment.includes("talya") || this.Treatment.includes("tup") || this.Treatment.includes('remove toxins')) {
+          if ((this.Treatment.includes("methi") || this.Treatment.includes("magnet"))) {
 
-          }else{
-            this.Points=""
+          } else {
+            this.Points = ""
           }
 
         }
         this.adminService
-          .updatePatient(this.pid,this.Name, this.Address, this.Age, this.Disease, this.Treatment,
+          .updatePatient(this.pid, this.Name, this.Address, this.Age, this.Disease, this.Treatment,
             this.Treatment_Plan, this.day, this.day1, this.time, this.time1, this.date,
-            this.session, this.review, this.History, this.Points, this.Phone,this.startDate,this.endDate)
+            this.session, this.review, this.History, this.Points, this.Phone, this.startDate, this.endDate)
           .subscribe(response => {
             if (response['status'] == "success") {
               this.toastr.success("patient updated", "", { progressBar: true })
@@ -350,7 +372,7 @@ Disease = new Array<any>();
       }
 
     }
-    else{
+    else {
       if (this.Name.length == 0) {
         this.toastr.error("name is mandatory")
       } else if (this.Address.length <= 12) {
@@ -363,30 +385,30 @@ Disease = new Array<any>();
         this.toastr.error("Treatment_Plan is mandatory")
       } else if (this.Treatment_Plan == "daily" && this.time.length == 0) {
         this.toastr.error("time is mandatory")
-      } else if (this.Treatment_Plan == "weekly_2times" && this.day.length == 0 ) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.day.length == 0) {
         this.toastr.error(" day is mandatory")
-      }  else if (this.Treatment_Plan == "weekly_2times" &&  this.day1.length == 0) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.day1.length == 0) {
         this.toastr.error("day1 is mandatory")
-      } else if (this.Treatment_Plan == "weekly_2times" && this.time.length == 0 ) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.time.length == 0) {
         this.toastr.error("time is mandatory")
-      }else if (this.Treatment_Plan == "weekly_2times" &&  this.time1.length == 0) {
+      } else if (this.Treatment_Plan == "weekly_2times" && this.time1.length == 0) {
         this.toastr.error(" time1 is mandatory")
       } else if (this.Treatment_Plan == "monthly" && this.date.length == 0) {
         this.toastr.error("date is mandatory")
       } else if (this.Treatment["name"] == "methi" && this.Points.length == 0) {
         this.toastr.error("points are mandatory")
-      } else if (this.startDate== null) {
+      } else if (this.startDate == null) {
         this.toastr.error("start Date is mandatory")
       } else if (this.endDate == null) {
         this.toastr.error("end Date is mandatory")
-      }else if (this.History.length == 0) {
+      } else if (this.History.length == 0) {
         this.toastr.error("History is mandatory")
-      } 
+      }
       else {
         this.adminService
           .signup(this.Name, this.Address, this.Age, this.Disease, this.Treatment,
             this.Treatment_Plan, this.day, this.day1, this.time, this.time1, this.date,
-            this.session, this.review, this.History, this.Points, this.Phone,this.startDate,this.endDate)
+            this.session, this.review, this.History, this.Points, this.Phone, this.startDate, this.endDate)
           .subscribe(response => {
             if (response['status'] == "success") {
               this.toastr.success("patient added", "", { progressBar: true })
@@ -405,20 +427,20 @@ Disease = new Array<any>();
 
   }
 
-  addDisease(e:string){
+  addDisease(e: string) {
     // if(e && e!== 'other'){
 
     // }
-    if(e == "other"){
-      this.other=true
-    }else{
-      if(this.pid){
-                this.Disease=Array.from(
+    if (e == "other") {
+      this.other = true
+    } else {
+      if (this.pid) {
+        this.Disease = Array.from(
           this.user['Disease'].split(",")
-          )
-          this.Disease.push(e)
+        )
+        this.Disease.push(e)
 
-      }else{
+      } else {
         this.Disease.push(e)
       }
 
@@ -487,6 +509,6 @@ Disease = new Array<any>();
     }
   }
 
-  
+
 }
 
