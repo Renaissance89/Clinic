@@ -245,7 +245,7 @@ export class PatientDataComponent implements OnInit {
           this.data = response['data']
           this.filter = this.data
           this.fData = this.data
-          console.log(this.data)
+         // console.log(this.data)
           // let valueArray= Object.values(this.data).filter(e=>{
           //   let value=Object.values(e)
           //   let d =value.filter(e1=>{

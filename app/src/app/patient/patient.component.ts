@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { NgbModal, ModalDismissReasons }
   from '@ng-bootstrap/ng-bootstrap';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-patient',
@@ -100,11 +101,11 @@ export class PatientComponent implements OnInit {
   arr = new Array<string>();
 
   treatmentPlan = [
-    { name: 'methi' },
-    { name: 'magnet' },
-    { name: 'talya' },
-    { name: 'tup' },
-    { name: 'remove toxins' },
+    { name: 'methi',a:false },
+    { name: 'magnet',a:false },
+    { name: 'talya',a:false },
+    { name: 'tup',a:false },
+    { name: 'remove toxins',a:false },
   ]
 
   Disease1 = [
@@ -237,6 +238,15 @@ export class PatientComponent implements OnInit {
               this.startDate = this.user['startDate']
               this.endDate = this.user['endDate']
             }
+
+           this.treatmentPlan.forEach(f=> this.Treatment.includes(f.name)?f.a=true:f.a=false)
+          //  this.Treatment.forEach(element=>
+          //   // this.treatmentPlan=this.treatmentPlan.filter((item)=>{
+          //   //   item.a == true;
+          //   //   return item.name = element
+          //   // })
+          //   this.treatmentPlan.forEach(i => element == i.name ?i.a = true:i.a=false)
+          //   )
             this.Treatment = []
             this.oldD = this.Disease
           }
@@ -244,6 +254,7 @@ export class PatientComponent implements OnInit {
       //   this.Treatment=Array.from(
       //     this.user['Treatment'].split(",")
       // )
+
 
       this.treatmentPlan.forEach((i) =>
         // this.valu=i.name==this.user['Treatment'].split(",")
