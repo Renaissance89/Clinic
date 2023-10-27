@@ -29,7 +29,7 @@ export class AdminService {
     return this.httpClient.post(this.url + '/signin', body)
   }
 
-  signup(Name: string, Address: string, Age: Number, Disease: object[], Treatment: string[],Treatment_Plan: string, day: string,
+  signup(Name: string, Address: string, Age: Number, Disease: string[], Treatment: string[],Treatment_Plan: string, day: string,
      day1: string, time: string,time1: string,date: string,session: string,review: string
      ,History: string,points: string,Phone: number,startDate:Date,endDate:Date) {
     const body = {
@@ -172,7 +172,7 @@ export class AdminService {
     return this.httpClient.delete(this.url + `/delete/${id}`, this.httpOptions)
   }
 
-  updatePatient(id,Name: string, Address: string, Age: Number, Disease: object[], Treatment: string[],Treatment_Plan: string, day: string,
+  updatePatient(id,Name: string, Address: string, Age: Number, Disease: string[], Treatment: string[],Treatment_Plan: string, day: string,
     day1: string, time: string,time1: string,date: string,session: string,review: string
     ,History: string,Points: string,Phone: number,startDate:Date,endDate:Date){
       const body = {

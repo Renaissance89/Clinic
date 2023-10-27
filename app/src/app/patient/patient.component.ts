@@ -79,7 +79,7 @@ export class PatientComponent implements OnInit {
   itemName: boolean = false;
   // Treatment: string[];
   Treatment = new Array<string>();
-  Disease = new Array<any>();
+  Disease = new Array<string>();
 
   menu = [
     { name: 'Daily' },
@@ -135,6 +135,7 @@ export class PatientComponent implements OnInit {
     { 23: 'Internal Inflamnation (anywhere in body)SP6 FW' },
     { 24: 'Anal Fissure CV1ZFW, CV6FY, K7FY, G38 BW ' },
     { 25: 'Anal Fistula = SPS FW ' },
+    { 26: 'Other' },
     // { 26: ' ' },
     // { 27: ' ' },
     // { 28: ' ' },
@@ -249,6 +250,7 @@ export class PatientComponent implements OnInit {
           //   )
             this.Treatment = []
             this.oldD = this.Disease
+            this.Disease=[]
           }
         })
       //   this.Treatment=Array.from(
@@ -442,13 +444,14 @@ export class PatientComponent implements OnInit {
     // if(e && e!== 'other'){
 
     // }
-    if (e == "other") {
+    if (e == "Other") {
       this.other = true
     } else {
       if (this.pid) {
-        this.Disease = Array.from(
-          this.user['Disease'].split(",")
-        )
+        // this.Disease = Array.from(
+        //   this.user['Disease'].split(",")
+        // )
+
         this.Disease.push(e)
 
       } else {

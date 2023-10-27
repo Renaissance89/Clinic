@@ -183,39 +183,39 @@
 
         <hr>
         <div class="card-body">
-          <span>Name : {{address['Name']}}</span>
+          <span><b>Name :</b>  {{address['Name']}}</span>
           <br>
-          <span>Address : {{address['Address']}}</span>
+          <span><b>Address :</b> {{address['Address']}}</span>
           <br>
-          <span>Age : {{address['Age']}}</span>
+          <span><b>Age :</b> {{address['Age']}}</span>
           <br>
-          <span>Disease : {{address['Disease']}}</span>
+          <span><b>Disease : </b>{{address['Disease']}}</span>
           <br>
-          <span>Treatment : {{address['Treatment']}}</span>
+          <span><b>Treatment :</b> {{address['Treatment']}}</span>
           <br>
-          <span>Treatment_Plan : {{address['Treatment_Plan']}}</span>
+          <span> {{address['Treatment_Plan']}}</span>
           <br>
-          <span>Points : {{address['Points']}}</span>
+          <span><b></b>Points : {{address['Points']}}</span>
           <br>
-          <span *ngIf="address['Date'] != '' ">Date :{{address['Date']}}</span>
+          <span *ngIf="address['Date'] != '' "><b>Date :</b>{{address['Date']}}</span>
           <br *ngIf="address['Date'] != '' ">
-          <span *ngIf="address['Day']">Day : {{address['Day']}}</span>
+          <span *ngIf="address['Day']"><b>Day :</b> {{address['Day']}}</span>
           <br *ngIf="address['Day'] != '' ">
-          <span *ngIf="address['Day1']">Day1 : {{address['Day1']}}</span>
+          <span *ngIf="address['Day1']"><b>Day1 :</b> {{address['Day1']}}</span>
           <br *ngIf="address['Day1']">
-          <span *ngIf="address['Time']">Time : {{address['Time']}}</span>
+          <span *ngIf="address['Time']"><b>Time :</b> {{address['Time']}}</span>
           <br *ngIf="address['Time']">
-          <span *ngIf="address['Time1']">Time1 : {{address['Time1']}}</span>
+          <span *ngIf="address['Time1']"><b>Time1 : </b>{{address['Time1']}}</span>
           <br *ngIf="address['Time1']">
-          <span>session : {{address['session']}}</span>
+          <span><b>Session :</b> {{address['session']}}</span>
           <br>
-          <span>start Date : {{address['startDate'] | date:shortDate }}</span>
+          <span><b>Treatment_Plan :</b>start Date : {{address['startDate'] | date:shortDate }}</span>
           <br>
-          <span>end Date : {{address['endDate'] | date:shortDate }}</span>
+          <span><b>Treatment_Plan :</b>end Date : {{address['endDate'] | date:shortDate }}</span>
           <br>
-          <span>review : {{address['review']}}</span>
+          <span><b>Treatment_Plan :</b>review : {{address['review']}}</span>
           <br>
-          <span>history : {{address['History']}}</span>
+          <span><b>Treatment_Plan :</b>history : {{address['History']}}</span>
           <br>
 
           <div *ngIf="address['rBefore']  == '' ">

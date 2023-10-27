@@ -57,9 +57,19 @@
             <label for="treatment">Treatment</label><br>
             <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index" >
                 <!-- <input class="form-check-input" type="checkbox"value=`{{item.name}}` id="inlineCheckbox1" ngModel [ngModelOptions]="{standalone: true}" value="option1"> -->
-                <input class="form-check-input" type="checkbox" value="{{item.name}}" [checked]="item.a" id="inlineCheckbox1"
+                <input class="form-check-input" type="checkbox" value="{{item.name}}" id="inlineCheckbox1"
                     (change)="addTreatment($event,item.name)">
                 <label  class="form-check-label" for="inlineCheckbox1">{{item.name}}</label>
+            </div>
+            <br>
+            <div class="form-group" *ngIf="pid>0">
+                <label for="treatment">Old Treatment</label><br>
+                <div class="form-check form-check-inline" *ngFor="let item of treatmentPlan ; let i=index" >
+                    <!-- <input class="form-check-input" type="checkbox"value=`{{item.name}}` id="inlineCheckbox1" ngModel [ngModelOptions]="{standalone: true}" value="option1"> -->
+                    <input onclick="return false;" onkeydown="return false;" class="form-check-input" type="checkbox" value="{{item.name}}" [checked]="item.a" id="inlineCheckbox1"
+                        (change)="addTreatment($event,item.name)">
+                    <label  class="form-check-label" for="inlineCheckbox1">{{item.name}}</label>
+                </div>                
             </div>
 
             <br><br>
