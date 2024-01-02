@@ -17,40 +17,42 @@ app.use(cors('*'))
 app.use(bodyParser.json())
 
 //request userID
-// function getPatientId(request, response, next) {
+function getPatientId(request, response, next) {
   
-//   if (
-//        request.url == '/patient/count'
-//        ||request.url == "/patient/signup"
-//        || request.url.startsWith('/review/videos/')
-//       ) {
+  if (
+       request.url == '/patient/count'
+        ||request.url == "/patient/patient-data"
+        || request.url.startsWith('/patient/image/')
+      ) {
 
-//     // do not check for token 
-//    next()
+    // do not check for token 
+   next()
     
-//   } else {
+  } else {
 
     
-//     try {
-//       const token = request.headers['token']
-//       const data = jwt.verify(token, config.secret)
+    try {
+      const token = request.headers['token']
+     // const data = jwt.verify(token, config.secret)
+     // console.log(token)
+      // userId with logged in user's id
+      if(token == undefined){
+        throw " undefined token"
+      }
 
-//       // userId with logged in user's id
-//      // request.patientId = data['id']
-//     //  console.log(data['id'])
-
-//      // call routes
-//       next()
+     // call routes
+      next()
       
-//     } catch (ex) {
-//       response.status(401)
-//       response.send({status: 'error', error: 'protected api'})
-//     }
-//   }
-// }
+    } catch (ex) {
+     // console.log(ex)
+      response.status(401)
+      response.send({status: 'error', error: 'protected api'})
+    }
+  }
+}
 
 //console.log(data['id'])
-//app.use(getPatientId)
+app.use(getPatientId)
 
 // add routes to the application
 app.use('/patient', routerPatient)

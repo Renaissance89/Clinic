@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class AdminService {
   }
 
   constructor(
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient,
+    private router: Router) { }
   
   login(email: string, password: string) {
     const body = {
@@ -196,6 +197,15 @@ export class AdminService {
         endDate:endDate,
       }
       return this.httpClient.put(this.url + `/update-patient/${id}`,body, this.httpOptions)
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (localStorage['token']) {
+      return true
+    }
+    else
+    this.router.navigate(['/home'])
+    return false 
   }
 
 }

@@ -28,6 +28,7 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorInterceptor } from './error.interceptor';
 //import {SingleMediaPlayer} from './single-media-player';
  
 
@@ -68,7 +69,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
    // MatRadioModule,
     // MatSelectModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
